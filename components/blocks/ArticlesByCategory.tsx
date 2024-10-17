@@ -1,5 +1,4 @@
 import { BlockData, ContentData } from '@gocontento/client'
-import BlogCard from './blog/BlogCard'
 import SmallArticleCard from './blog/SmallArticleCard'
 import LargeArticleCard from './blog/LargeArticleCard'
 

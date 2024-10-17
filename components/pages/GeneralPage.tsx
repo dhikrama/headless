@@ -3,7 +3,6 @@
 import { ContentData } from '@gocontento/client/lib/types'
 import { useLivePreview } from '@gocontento/next'
 import BlockMatcher from '../BlockMatcher'
-import FeaturedPost from '../Hero'
 
 export default function GeneralPage({
   initialContent,

@@ -1,9 +1,5 @@
 import './globals.css'
-import {
-  createClient,
-  getBlogCategoryLinks,
-  getBlogPosts,
-} from '@/lib/contento'
+import { createClient, getBlogCategoryLinks } from '@/lib/contento'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { DM_Sans, JetBrains_Mono } from 'next/font/google'

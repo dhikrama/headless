@@ -69,7 +69,7 @@ export default function FeaturedPost({
           <div className="flex flex-col justify-between">
             {latestPosts.map((post) => {
               return (
-                <div className="flex gap-x-5 py-4">
+                <div key={`${post.id}`} className="flex gap-x-5 py-4">
                   <Link
                     className="h-20 w-20 flex-shrink-0"
                     href={`/${post.uri}`}
@@ -102,9 +102,9 @@ export default function FeaturedPost({
             Popular Authors
           </h3>
           <div className="flex flex-col justify-center">
-            {authors.map((author) => {
+            {authors.map((author: any) => {
               return (
-                <div className="flex gap-x-5 py-5">
+                <div key={`${author.id}`} className="flex gap-x-5 py-5">
                   <Link
                     className="h-20 w-20"
                     href={`/${author.content_link.uri}`}

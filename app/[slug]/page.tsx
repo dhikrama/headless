@@ -1,5 +1,5 @@
 import { draftMode } from 'next/headers'
-import { createClient, generateSeo } from '@/lib/contento'
+import { createClient, generateSeo, getBlogPosts } from '@/lib/contento'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import GeneralPage from '@/components/pages/GeneralPage'
@@ -65,5 +65,7 @@ export default async function page({ params }: Props) {
 
   const content = response.content[0]
 
-  return <GeneralPage initialContent={content} />
+  const posts = await getBlogPosts()
+
+  return <GeneralPage initialContent={content} posts={posts} />
 }
