@@ -1,75 +1,77 @@
 'use client'
 
 import { BlockData, ContentData } from '@gocontento/client'
-import ContentoLogo from '@/images/ContentoLogo'
+import MogalLogo from '@/images/MogalLogo'
 import Link from 'next/link'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/16/solid'
 import { usePathname } from 'next/navigation'
 import { classNames } from '@/utils/ClassNames'
+import CategoryPill from './blocks/blog/CategoryPill'
 
 function Logo() {
   return (
     <Link
       href="/"
-      className="inline-block w-[128px] hover:opacity-80 lg:-mt-2.5 lg:w-[180px]"
+      className="inline-block w-[128px] hover:opacity-80 lg:w-[120px]"
     >
-      <ContentoLogo className="h-auto w-full" />
+      <MogalLogo className="h-auto w-full" />
     </Link>
   )
 }
 
-export default function Header({ mainNav }: { mainNav: ContentData }) {
+export default function Header({
+  mainNav,
+  categoryLinks,
+}: {
+  mainNav: ContentData
+  categoryLinks: ContentData[]
+}) {
   const pathName = usePathname()
 
   return (
-    <Disclosure as="nav" className="bg-zinc-100">
+    <Disclosure as="nav">
       {({ open }) => (
         <>
-          <div className="mx-auto px-4 sm:px-6 md:px-28">
-            <div className="flex h-20 items-center justify-between">
+          <div className="mx-auto px-4 sm:px-6 md:px-16">
+            <div className="flex h-28 items-center justify-between">
               {/* Logo */}
-              <div className="flex flex-shrink-0 items-center">
+              <div className="flex flex-shrink-0 items-center gap-x-8">
                 <Logo />
+                <div className="hidden flex-wrap items-center gap-x-3 gap-y-4 md:flex">
+                  {categoryLinks.map((category, index) => (
+                    <>
+                      <CategoryPill
+                        key={`article-category-${index}`}
+                        category={category}
+                      />
+                      <span className="last:hidden">/</span>
+                    </>
+                  ))}
+                </div>
               </div>
               <div>
                 {/* Desktop Nav */}
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-9">
                   {mainNav.fields.nav_links.blocks.map((item: BlockData) => {
-                    if (item.fields.button.is_on) {
-                      return (
-                        <Disclosure.Button
-                          key={item.fields.link_text.text}
-                          as={Link}
-                          href={item.fields.link_url.text}
-                          className="my-9 inline-block bg-zinc-700 px-6 py-3 font-semibold text-white hover:opacity-80"
-                          target={
-                            item.fields.open_in_new_tab.is_on ? '_blank' : ''
-                          }
-                        >
-                          {item.fields.link_text.text}
-                        </Disclosure.Button>
-                      )
-                    } else {
-                      return (
-                        <Disclosure.Button
-                          key={item.fields.link_text.text}
-                          as={Link}
-                          href={item.fields.link_url.text}
-                          className={classNames(
-                            pathName.startsWith(item.fields.link_url.text)
-                              ? 'text-teal-500'
-                              : 'text-zinc-600 hover:opacity-80',
-                            'text-md font-semibold',
-                          )}
-                          target={
-                            item.fields.open_in_new_tab.is_on ? '_blank' : ''
-                          }
-                        >
-                          {item.fields.link_text.text}
-                        </Disclosure.Button>
-                      )
-                    }
+                    return (
+                      <Disclosure.Button
+                        key={item.fields.link_text.text}
+                        as={Link}
+                        href={item.fields.link_url.text}
+                        className={classNames(
+                          pathName.startsWith(item.fields.link_url.text)
+                            ? 'text-teal-500'
+                            : 'text-neutral-900 hover:opacity-80',
+                          'text-md',
+                        )}
+                        target={
+                          item.fields.open_in_new_tab.is_on ? '_blank' : ''
+                        }
+                      >
+                        {item.fields.link_text.text}
+                      </Disclosure.Button>
+                    )
                   })}
                 </div>
                 <div className="-ml-2 mr-2 flex items-center md:hidden">
@@ -98,7 +100,7 @@ export default function Header({ mainNav }: { mainNav: ContentData }) {
                       key={item.fields.link_text.text}
                       as={Link}
                       href={item.fields.link_url.text}
-                      className="block bg-zinc-700 px-6 py-3 text-center font-semibold text-white hover:opacity-80"
+                      className="block bg-neutral-900 px-12 py-3 text-center font-semibold text-neutral-50 hover:opacity-80"
                       target={item.fields.open_in_new_tab.is_on ? '_blank' : ''}
                     >
                       {item.fields.link_text.text}

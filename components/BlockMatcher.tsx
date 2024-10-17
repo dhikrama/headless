@@ -1,28 +1,32 @@
 'use client'
 
 import { useId } from 'react'
-import { BlockData } from '@gocontento/client'
+import { BlockData, ContentData } from '@gocontento/client'
+import ArticlesByCategory from './blocks/ArticlesByCategory'
 import Hero from './blocks/Hero'
-import Text from './blocks/Text'
-import ImageAndText from './blocks/ImageAndText'
-import ImageBlock from './blocks/ImageBlock'
 
-export default function BlockMatcher({ blocks }: { blocks: BlockData[] }) {
+export default function BlockMatcher({
+  posts,
+  blocks,
+}: {
+  posts: ContentData[]
+  blocks: BlockData[]
+}) {
   const id = useId()
 
   return blocks.map((block: BlockData, index) => {
     switch (block.content_type.handle) {
       case 'hero':
-        return <Hero key={id + '-' + index} block={block} />
+        return <Hero key={id + '-' + index} posts={posts} block={block} />
 
-      case 'text':
-        return <Text key={id + '-' + index} block={block} />
-
-      case 'image_and_text':
-        return <ImageAndText key={id + '-' + index} block={block} />
-
-      case 'image':
-        return <ImageBlock key={id + '-' + index} block={block} />
+      case 'articles_by_category':
+        return (
+          <ArticlesByCategory
+            key={id + '-' + index}
+            posts={posts}
+            block={block}
+          />
+        )
 
       default:
         return (

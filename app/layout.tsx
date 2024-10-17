@@ -1,14 +1,25 @@
 import './globals.css'
-import { createClient } from '@/lib/contento'
+import {
+  createClient,
+  getBlogCategoryLinks,
+  getBlogPosts,
+} from '@/lib/contento'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { Inter } from 'next/font/google'
+import { DM_Sans, JetBrains_Mono } from 'next/font/google'
 import { notFound } from 'next/navigation'
 
-const InterFont = Inter({
-  variable: '--font-inter',
+const DMSansFont = DM_Sans({
+  variable: '--font-dm-sans',
   weight: ['400', '700', '900'],
   style: ['normal'],
+  subsets: ['latin'],
+})
+
+const JetBrainsMonoFont = JetBrains_Mono({
+  variable: '--font-jet-brains-mono',
+  weight: ['400'],
+  style: ['normal', 'italic'],
   subsets: ['latin'],
 })
 
@@ -44,15 +55,17 @@ export default async function RootLayout({
       notFound()
     })
 
+  const categoryLinks = await getBlogCategoryLinks()
+
   return (
     <html
       lang="en"
-      className={`${InterFont.variable} h-full antialiased`}
+      className={`${DMSansFont.variable} ${JetBrainsMonoFont.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex h-full">
+      <body className="flex h-full bg-neutral-100">
         <div className="flex w-full flex-col">
-          <Header mainNav={mainNav} />
+          <Header mainNav={mainNav} categoryLinks={categoryLinks} />
           <main className="flex-auto">{children}</main>
           <Footer footerNav={footerNav} />
         </div>

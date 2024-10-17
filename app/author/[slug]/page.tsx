@@ -2,8 +2,8 @@ import { draftMode } from 'next/headers'
 import { createClient, generateSeo, getBlogCategoryLinks } from '@/lib/contento'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import BlogCategoryPage from '@/components/pages/BlogCategoryPage'
 import { ContentAPIResponse, ContentData } from '@gocontento/client'
+import AuthorPage from '@/components/pages/AuthorPage'
 
 const client = createClient()
 
@@ -16,7 +16,7 @@ type Props = {
 export async function generateStaticParams() {
   return await client
     .getContentByType({
-      contentType: 'blog_category',
+      contentType: 'authors',
       limit: 100,
     })
     .then((response: ContentAPIResponse) => {
@@ -31,9 +31,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return await client
-    .getContentBySlug(params.slug, 'blog_category')
+    .getContentBySlug(params.slug, 'authors')
     .then((content: ContentData) => {
-      return generateSeo(content)
+      const nameParts = content.fields.name.text.split(' ')
+
+      return generateSeo(content, {
+        type: 'profile',
+        firstName: nameParts.length ? nameParts[0] : content.fields.name.text,
+        lastName: nameParts.length >= 2 ? nameParts[1] : null,
+      })
     })
     .catch(() => {
       return {}
@@ -42,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function page({ params }: Props) {
   const content = await createClient(draftMode().isEnabled)
-    .getContentBySlug(params.slug, 'blog_category')
+    .getContentBySlug(params.slug, 'authors')
     .catch(() => {
       notFound()
     })
@@ -51,16 +57,15 @@ export default async function page({ params }: Props) {
     params: {
       content_type: 'blog_post',
       limit: '100',
-      'fields[content_links][category][slug]': params.slug,
+      'fields[content_links][author][slug]': params.slug,
     },
   })
 
   const posts = postsResponse.content
-
   const categoryLinks = await getBlogCategoryLinks()
 
   return (
-    <BlogCategoryPage
+    <AuthorPage
       initialContent={content}
       posts={posts}
       categoryLinks={categoryLinks}

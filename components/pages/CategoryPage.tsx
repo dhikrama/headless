@@ -1,11 +1,10 @@
 'use client'
 
-import { ContentData } from '@gocontento/client'
 import { useLivePreview } from '@gocontento/next'
-import BlogCard from '../blocks/blog/BlogCard'
+import { ContentData } from '@gocontento/client/lib/types'
 import CategoryPill from '../blocks/blog/CategoryPill'
 
-export default function BlogLandingPage({
+export default function BlogCategory({
   initialContent,
   posts,
   categoryLinks,
@@ -22,21 +21,13 @@ export default function BlogLandingPage({
         <h1 className="text-4xl font-semibold md:text-5xl">
           {content.fields.title.text}
         </h1>
-        <div
-          dangerouslySetInnerHTML={{ __html: content.fields.text.text }}
-          className="text-lg"
-        />
         <div className="my-7 flex flex-wrap items-center gap-x-3 gap-y-4">
           {categoryLinks.map((category, index) => (
             <CategoryPill key={`blog-category-${index}`} category={category} />
           ))}
         </div>
       </div>
-      <div className="mt-12 grid gap-12 md:mt-16 md:grid-cols-3">
-        {posts.map((post, index) => (
-          <BlogCard key={`blog-post-${index}`} post={post} />
-        ))}
-      </div>
+      <div className="mt-12 grid gap-12 md:mt-16 md:grid-cols-3"></div>
     </div>
   )
 }

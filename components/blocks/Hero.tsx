@@ -1,37 +1,144 @@
-import { BlockData } from '@gocontento/client'
-import Image from 'next/image'
-import Button from './Button'
+import { BlockData, ContentData } from '@gocontento/client'
+import Link from 'next/link'
+import Image from '@/utils/Image'
+import { formatDate } from '@/utils/formatDate'
+import LinkedInIcon from '../icons/LinkedInIcon'
+import TwitterIcon from '../icons/TwitterIcon'
 
-export default function Hero({ block }: { block: BlockData }) {
+export default function FeaturedPost({
+  posts,
+  block,
+}: {
+  posts: ContentData[]
+  block: BlockData
+}) {
+  // Stores featuredPost, featuredPostAuthor and authors as variables to reduce inline referencing
+
+  const featuredPost = block.fields.featured_post.content_links[0].content_link
+
+  const featuredPostAuthor =
+    featuredPost.fields.author.content_links[0].content_link
+
+  const authors = block.fields.authors.content_links
+
+  // Removes featured post from posts array
+
+  const postsWithoutFeatured = posts.filter(
+    (post) => post.slug != featuredPost.slug,
+  )
+
+  // Gets latest three posts
+
+  const latestPosts = postsWithoutFeatured.slice(0, 3)
+
   return (
-    <div className="pb-9 md:pb-16">
-      <div className="grid items-center space-y-6 md:grid-cols-2 md:space-x-12">
-        <div className="prose">
-          <h1 className="text-4xl font-semibold md:text-5xl">
-            {block.fields.title.text}
-          </h1>
-          <div
-            dangerouslySetInnerHTML={{ __html: block.fields.text.text }}
-            className="text-lg"
+    <div className="grid-cols-12 gap-x-10 md:grid">
+      <div className="col-span-8 pb-6">
+        <Link href={`/${featuredPost.uri}`}>
+          <Image
+            asset={featuredPost.fields.image.assets[0].asset}
+            imgClassName="aspect-sqaure md:aspect-[9/4] object-cover mb-7"
           />
-          {block.fields.button.blocks &&
-            block.fields.button.blocks.map((button: BlockData) => {
+        </Link>
+        <div className=" flex gap-x-5">
+          <span className="font-mono text-sm">
+            {formatDate(featuredPost.published_at)}
+          </span>
+          <span>/</span>
+          <Link
+            href={`/${featuredPost.fields.category.content_links[0].content_link.uri}`}
+            className="font-mono text-sm"
+          >
+            {featuredPost.fields.category.content_links[0].content_link.name}
+          </Link>
+        </div>
+        <Link href={`/${featuredPost.uri}`}>
+          <h2 className="mb-7 mt-6 text-pretty text-5xl/[1.1em] font-bold tracking-tight text-neutral-900 md:text-4xl/[1.1em] lg:text-6xl/[1.1em]">
+            {featuredPost.fields.title.text}
+          </h2>
+        </Link>
+        <p className="text-lg text-neutral-900/80 xl:w-3/4">
+          {featuredPost.fields.excerpt.text}
+        </p>
+      </div>
+      <div className="col-span-4 flex flex-col justify-between">
+        <div className="border-t border-t-neutral-900 pb-6">
+          <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
+            Latest
+          </h3>
+          <div className="flex flex-col justify-between">
+            {latestPosts.map((post) => {
               return (
-                <Button key={button.fields.button_text.text} button={button} />
+                <div className="flex gap-x-5 py-4">
+                  <Link
+                    className="h-20 w-20 flex-shrink-0"
+                    href={`/${post.uri}`}
+                  >
+                    <Image
+                      asset={post.fields.image.assets[0].asset}
+                      imgClassName="object-cover aspect-square"
+                    />
+                  </Link>
+                  <div className="flex flex-col justify-between">
+                    <Link href={`/${post.uri}`}>
+                      <h3 className="text-md text-pretty font-bold">
+                        {post.fields.title.text}
+                      </h3>
+                    </Link>
+                    <Link
+                      href={`/${post.fields.category.content_links[0].content_link.uri}`}
+                      className="font-mono text-sm"
+                    >
+                      {post.fields.category.content_links[0].content_link.name}
+                    </Link>
+                  </div>
+                </div>
               )
             })}
-        </div>
-        {block.fields.image.assets.length > 0 && (
-          <div>
-            <Image
-              src={block.fields.image.assets[0].asset.url}
-              alt={block.fields.image.assets[0].asset.description}
-              className="h-full w-full object-cover"
-              width={750}
-              height={600}
-            />
           </div>
-        )}
+        </div>
+        <div className="border-t border-t-neutral-900 pb-6">
+          <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
+            Popular Authors
+          </h3>
+          <div className="flex flex-col justify-center">
+            {authors.map((author) => {
+              return (
+                <div className="flex gap-x-5 py-5">
+                  <Link
+                    className="h-20 w-20"
+                    href={`/${author.content_link.uri}`}
+                  >
+                    <Image
+                      asset={author.content_link.fields.image.assets[0].asset}
+                      className="object-cover"
+                    />
+                  </Link>
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <Link href={`/${author.content_link.uri}`}>
+                        <h3 className="text-md font-bold">
+                          {author.content_link.fields.name.text}
+                        </h3>
+                      </Link>
+                      <p className="font-mono text-sm">
+                        {author.content_link.fields.role.text}
+                      </p>
+                    </div>
+                    <div className="flex gap-x-3 text-neutral-900">
+                      <LinkedInIcon
+                        href={author.content_link.fields.linked_in.text}
+                      />
+                      <TwitterIcon
+                        href={author.content_link.fields.twitter.text}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
   )

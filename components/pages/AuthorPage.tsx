@@ -2,7 +2,6 @@
 
 import { useLivePreview } from '@gocontento/next'
 import { ContentData } from '@gocontento/client/lib/types'
-import BlogCard from '../blocks/blog/BlogCard'
 import CategoryPill from '../blocks/blog/CategoryPill'
 import Image from 'next/image'
 import TwitterIcon from '../icons/TwitterIcon'
@@ -38,11 +37,7 @@ export default function BlogAuthor({
           <TwitterIcon href={content.fields.twitter.text} />
           <LinkedInIcon href={content.fields.linked_in.text} />
         </div>
-        <div className="mt-12 grid gap-12 md:mt-16 md:grid-cols-3">
-          {posts.map((post, index) => (
-            <BlogCard key={`blog-post-${index}`} post={post} />
-          ))}
-        </div>
+        <div className="mt-12 grid gap-12 md:mt-16 md:grid-cols-3"></div>
       </div>
     </div>
   )
