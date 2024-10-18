@@ -39,9 +39,10 @@ export default function FeaturedPost({
           <Image
             asset={featuredPost.fields.image.assets[0].asset}
             imgClassName="aspect-square md:aspect-[9/4] object-cover mb-7"
+            apiParams="fit=crop&w=1200&dpr=2"
           />
         </Link>
-        <div className=" flex gap-x-5">
+        <div className=" flex items-center gap-x-5">
           <span className="font-mono text-sm">
             {formatDate(featuredPost.published_at)}
           </span>
@@ -54,9 +55,9 @@ export default function FeaturedPost({
           </Link>
         </div>
         <Link href={`/${featuredPost.uri}`}>
-          <h2 className="mb-7 mt-6 text-pretty text-4xl/[1.1em] font-bold tracking-tight text-neutral-900 lg:text-6xl/[1.1em]">
+          <h1 className="mb-7 mt-6 text-pretty text-4xl/[1.1em] font-bold tracking-tight text-neutral-900 lg:text-6xl/[1.1em]">
             {featuredPost.fields.title.text}
-          </h2>
+          </h1>
         </Link>
         <p className="text-lg text-neutral-900/80 xl:w-3/4">
           {featuredPost.fields.excerpt.text}
