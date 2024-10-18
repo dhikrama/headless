@@ -36,13 +36,10 @@ export default function Header({
           </Link>
           <div className="hidden flex-wrap items-center gap-x-3 gap-y-4 md:flex">
             {categoryLinks.map((category, index) => (
-              <>
-                <CategoryPill
-                  key={`article-category-${index}`}
-                  category={category}
-                />
+              <div key={`article-category-${index}`}>
+                <CategoryPill category={category} />
                 <span className="last:hidden">/</span>
-              </>
+              </div>
             ))}
           </div>
         </div>
@@ -120,14 +117,13 @@ export default function Header({
           <div>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
               {categoryLinks.map((category, index) => (
-                <>
+                <div key={`article-category-${index}`}>
                   <CategoryPill
-                    key={`article-category-${index}`}
                     category={category}
                     onClick={() => setMobileMenuOpen(false)}
                   />
                   <span className="py-6 text-neutral-50 last:hidden">/</span>
-                </>
+                </div>
               ))}
             </div>
             <div className="flex flex-col space-y-5 border-t border-t-neutral-50 py-6">
