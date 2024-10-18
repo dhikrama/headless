@@ -54,7 +54,7 @@ export default function FeaturedPost({
           </Link>
         </div>
         <Link href={`/${featuredPost.uri}`}>
-          <h2 className="mb-7 mt-6 text-pretty text-5xl/[1.1em] font-bold tracking-tight text-neutral-900 md:text-4xl/[1.1em] lg:text-6xl/[1.1em]">
+          <h2 className="mb-7 mt-6 text-pretty text-4xl/[1.1em] font-bold tracking-tight text-neutral-900 lg:text-6xl/[1.1em]">
             {featuredPost.fields.title.text}
           </h2>
         </Link>

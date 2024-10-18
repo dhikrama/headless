@@ -47,9 +47,9 @@ export default function ArticlePage({
               {content.fields.category.content_links[0].content_link.name}
             </Link>
           </div>
-          <h3 className="mt-6 text-5xl/[1.1em] font-bold tracking-tight text-neutral-900 md:line-clamp-4 md:text-4xl/[1.1em] lg:text-6xl/[1.1em]">
+          <h1 className="mt-6 text-4xl/[1.1em] font-bold tracking-tight text-neutral-900 md:line-clamp-4 lg:text-6xl/[1.1em]">
             {content.fields.title.text}
-          </h3>
+          </h1>
           <Link
             href={`/${author.uri}`}
             className="my-9 flex items-center gap-x-5"
