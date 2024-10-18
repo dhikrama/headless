@@ -1,6 +1,6 @@
 import { BlockData, ContentData } from '@gocontento/client'
-import SmallArticleCard from './blog/SmallArticleCard'
-import LargeArticleCard from './blog/LargeArticleCard'
+import SmallArticleCard from './layouts/SmallArticleCard'
+import LargeArticleCard from './layouts/LargeArticleCard'
 
 export default function ArticlesByCategory({
   posts,

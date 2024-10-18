@@ -2,7 +2,8 @@
 
 import { useLivePreview } from '@gocontento/next'
 import { ContentData } from '@gocontento/client/lib/types'
-import CategoryPill from '../blocks/blog/CategoryPill'
+import LargeArticleCard from '../blocks/layouts/LargeArticleCard'
+import MediumArticleCard from '../blocks/layouts/MediumArticleCard'
 
 export default function BlogCategory({
   initialContent,
@@ -15,19 +16,17 @@ export default function BlogCategory({
 }) {
   const { content } = useLivePreview({ content: initialContent })
 
+  // Takes just the first post to use as large article card at top of section
+
+  const firstPost = posts[0]
+
+  // Removes the first post from the filtered content so there isn't a duplicate in the small article cards
+
+  const categoryPosts = posts.slice(1)
+
   return (
-    <div className="mx-auto px-4 py-9 sm:px-6 md:px-28 md:py-16">
-      <div className="prose">
-        <h1 className="text-4xl font-semibold md:text-5xl">
-          {content.fields.title.text}
-        </h1>
-        <div className="my-7 flex flex-wrap items-center gap-x-3 gap-y-4">
-          {categoryLinks.map((category, index) => (
-            <CategoryPill key={`blog-category-${index}`} category={category} />
-          ))}
-        </div>
-      </div>
-      <div className="mt-12 grid gap-12 md:mt-16 md:grid-cols-3"></div>
+    <div className="mx-auto px-4 pb-6 md:px-16">
+      <LargeArticleCard post={firstPost} />
     </div>
   )
 }

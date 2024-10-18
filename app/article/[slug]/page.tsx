@@ -1,5 +1,5 @@
 import { draftMode } from 'next/headers'
-import { createClient, generateSeo } from '@/lib/contento'
+import { createClient, generateSeo, getBlogPosts } from '@/lib/contento'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import ArticlePage from '@/components/pages/ArticlePage'
@@ -53,5 +53,7 @@ export default async function page({ params }: Props) {
       notFound()
     })
 
-  return <ArticlePage initialContent={post} />
+  const posts = await getBlogPosts()
+
+  return <ArticlePage initialContent={post} posts={posts} />
 }

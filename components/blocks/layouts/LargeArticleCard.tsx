@@ -16,9 +16,9 @@ export default function LargeArticleCard({ post }: { post: ContentData }) {
             {formatDate(post.published_at)}
           </span>
           <Link href={`/${post.uri}`}>
-            <h3 className="mt-4 text-5xl/[1.1em] font-bold tracking-tight text-neutral-900 md:line-clamp-4 md:text-4xl/[1.1em] lg:text-6xl/[1.1em]">
+            <h2 className="mt-4 text-5xl/[1.1em] font-bold tracking-tight text-neutral-900 md:line-clamp-4 md:text-4xl/[1.1em] lg:text-6xl/[1.1em]">
               {post.fields.title.text}
-            </h3>
+            </h2>
           </Link>
           <p className="my-7 text-base text-neutral-900/80 md:line-clamp-3 lg:text-lg">
             {post.fields.excerpt.text}

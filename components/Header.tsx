@@ -8,7 +8,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/16/solid'
 import { usePathname } from 'next/navigation'
 import { classNames } from '@/utils/ClassNames'
 import { useState } from 'react'
-import CategoryPill from './blocks/blog/CategoryPill'
+import CategoryPill from './blocks/layouts/CategoryPill'
 import LinkedInIcon from './icons/LinkedInIcon'
 import TwitterIcon from './icons/TwitterIcon'
 import MogalLogoOutline from '@/images/MogalLogoOutline'
@@ -27,7 +27,7 @@ export default function Header({
     <header className="bg-neutral-100">
       <nav
         aria-label="Global"
-        className="mx-auto flex h-20 items-center justify-between px-4 sm:px-6 md:px-16 lg:h-32"
+        className="mx-auto flex h-20 items-center justify-between px-4 sm:px-6 md:px-16 lg:h-28"
       >
         <div className="flex gap-x-9 lg:flex-1">
           <Link href="/" className="inline-block w-[120px] hover:opacity-80">
@@ -36,9 +36,12 @@ export default function Header({
           </Link>
           <div className="hidden flex-wrap items-center gap-x-3 gap-y-4 md:flex">
             {categoryLinks.map((category, index) => (
-              <div key={`article-category-${index}`}>
+              <div
+                key={`article-category-${index}`}
+                className="[&_span]:last-of-type:hidden"
+              >
                 <CategoryPill category={category} />
-                <span className="last:hidden">/</span>
+                <span className="px-3 text-neutral-900">/</span>
               </div>
             ))}
           </div>
@@ -96,11 +99,11 @@ export default function Header({
           <div className="flex h-20 items-center justify-between">
             <Link
               href="/"
-              className="inline-block w-[128px]"
+              className="inline-block w-[120px]"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Enigma</span>
-              <MogalLogoOutline className="h-auto w-[120px] w-full" />
+              <span className="sr-only">Mogal</span>
+              <MogalLogoOutline className="h-auto w-full" />
             </Link>
             <button
               type="button"
@@ -115,14 +118,17 @@ export default function Header({
             </button>
           </div>
           <div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-4 py-6">
               {categoryLinks.map((category, index) => (
-                <div key={`article-category-${index}`}>
+                <div
+                  key={`article-category-${index}`}
+                  className="[&_span]:last-of-type:hidden"
+                >
                   <CategoryPill
                     category={category}
                     onClick={() => setMobileMenuOpen(false)}
                   />
-                  <span className="py-6 text-neutral-50 last:hidden">/</span>
+                  <span className="px-3 text-neutral-50">/</span>
                 </div>
               ))}
             </div>

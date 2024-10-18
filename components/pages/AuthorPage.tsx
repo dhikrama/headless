@@ -18,14 +18,14 @@ export default function BlogAuthor({
   const { content } = useLivePreview({ content: initialContent })
 
   return (
-    <div className="mx-auto px-4 py-9 sm:px-6 md:px-28 md:py-16">
+    <div className="mx-auto px-4 md:px-16">
       <div>
         <Image
           src={content.fields.image.assets[0].asset.url}
           alt={content.fields.image.assets[0].asset.description}
           width={80}
           height={80}
-          className="rounded-full object-cover"
+          className="object-cover"
         />
         <h1 className="my-5 text-4xl font-semibold md:text-5xl">
           {content.fields.name.text}

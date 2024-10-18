@@ -14,7 +14,7 @@ export default function CategoryPill({
       <Link
         href={`/${category.uri}`}
         onClick={onClick}
-        className="hover:bold p-2 font-mono text-sm text-neutral-50 first:pl-0 md:text-neutral-900"
+        className="hover:bold not-prose p-2 font-mono text-sm text-neutral-50 first:pl-0 md:text-neutral-900"
       >
         {category.name}
       </Link>

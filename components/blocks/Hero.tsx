@@ -4,6 +4,7 @@ import Image from '@/utils/Image'
 import { formatDate } from '@/utils/formatDate'
 import LinkedInIcon from '../icons/LinkedInIcon'
 import TwitterIcon from '../icons/TwitterIcon'
+import LatestPosts from './layouts/LatestPosts'
 
 export default function FeaturedPost({
   posts,
@@ -37,7 +38,7 @@ export default function FeaturedPost({
         <Link href={`/${featuredPost.uri}`}>
           <Image
             asset={featuredPost.fields.image.assets[0].asset}
-            imgClassName="aspect-sqaure md:aspect-[9/4] object-cover mb-7"
+            imgClassName="aspect-square md:aspect-[9/4] object-cover mb-7"
           />
         </Link>
         <div className=" flex gap-x-5">
@@ -62,41 +63,7 @@ export default function FeaturedPost({
         </p>
       </div>
       <div className="col-span-4 flex flex-col justify-between">
-        <div className="border-t border-t-neutral-900 pb-6">
-          <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
-            Latest
-          </h3>
-          <div className="flex flex-col justify-between">
-            {latestPosts.map((post) => {
-              return (
-                <div key={`${post.id}`} className="flex gap-x-5 py-4">
-                  <Link
-                    className="h-20 w-20 flex-shrink-0"
-                    href={`/${post.uri}`}
-                  >
-                    <Image
-                      asset={post.fields.image.assets[0].asset}
-                      imgClassName="object-cover aspect-square"
-                    />
-                  </Link>
-                  <div className="flex flex-col justify-between">
-                    <Link href={`/${post.uri}`}>
-                      <h3 className="text-md text-pretty font-bold">
-                        {post.fields.title.text}
-                      </h3>
-                    </Link>
-                    <Link
-                      href={`/${post.fields.category.content_links[0].content_link.uri}`}
-                      className="font-mono text-sm"
-                    >
-                      {post.fields.category.content_links[0].content_link.name}
-                    </Link>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
+        <LatestPosts posts={latestPosts} />
         <div className="border-t border-t-neutral-900 pb-6">
           <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
             Popular Authors
