@@ -33,8 +33,8 @@ export default function FeaturedPost({
   const latestPosts = postsWithoutFeatured.slice(0, 3)
 
   return (
-    <div className="grid-cols-12 gap-x-10 md:grid">
-      <div className="col-span-8 pb-6">
+    <div className="grid-cols-7 gap-x-10 md:grid">
+      <div className="col-span-5 pb-6">
         <Link href={`/${featuredPost.uri}`}>
           <Image
             asset={featuredPost.fields.image.assets[0].asset}
@@ -63,7 +63,7 @@ export default function FeaturedPost({
           {featuredPost.fields.excerpt.text}
         </p>
       </div>
-      <div className="col-span-4 flex flex-col justify-between">
+      <div className="col-span-2 flex flex-col justify-between">
         <LatestPosts posts={latestPosts} />
         <div className="border-t border-t-neutral-900 pb-6">
           <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
