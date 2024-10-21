@@ -26,8 +26,8 @@ export default function BlogCategory({
     <div className="mx-auto px-4 pb-6 md:px-16">
       <LargeArticleCard post={firstPost} />
       <div className="mt-12 grid grid-cols-2 gap-x-10 gap-y-10 border-t border-t-neutral-900 py-16">
-        {categoryPosts.map((post) => {
-          return <MediumArticleCard post={post} />
+        {categoryPosts.map((post: ContentData, index: number) => {
+          return <MediumArticleCard post={post} key={`article-${index}`} />
         })}
       </div>
     </div>
