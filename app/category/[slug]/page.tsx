@@ -1,5 +1,5 @@
 import { draftMode } from 'next/headers'
-import { createClient, generateSeo, getBlogCategoryLinks } from '@/lib/contento'
+import { createClient, generateSeo } from '@/lib/contento'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import CategoryPage from '@/components/pages/CategoryPage'
@@ -47,7 +47,7 @@ export default async function page({ params }: Props) {
       notFound()
     })
 
-  const postsResponse = await client.getContent({
+  const getCategoryPosts = await client.getContent({
     params: {
       content_type: 'blog_post',
       limit: '100',
@@ -55,15 +55,7 @@ export default async function page({ params }: Props) {
     },
   })
 
-  const posts = postsResponse.content
+  const posts = getCategoryPosts.content
 
-  const categoryLinks = await getBlogCategoryLinks()
-
-  return (
-    <CategoryPage
-      initialContent={content}
-      posts={posts}
-      categoryLinks={categoryLinks}
-    />
-  )
+  return <CategoryPage initialContent={content} posts={posts} />
 }

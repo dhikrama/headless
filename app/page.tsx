@@ -3,13 +3,7 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import GeneralPage from '@/components/pages/GeneralPage'
 
-type Props = {
-  params: {
-    slug: string
-  }
-}
-
-export default async function page({ params }: Props) {
+export default async function page() {
   const content = await createClient(draftMode().isEnabled)
     .getContentBySlug('home', 'general_page')
     .catch(() => {

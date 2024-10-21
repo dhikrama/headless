@@ -8,11 +8,9 @@ import MediumArticleCard from '../blocks/layouts/MediumArticleCard'
 export default function BlogCategory({
   initialContent,
   posts,
-  categoryLinks,
 }: {
   initialContent: ContentData
   posts: ContentData[]
-  categoryLinks: ContentData[]
 }) {
   const { content } = useLivePreview({ content: initialContent })
 
@@ -27,6 +25,11 @@ export default function BlogCategory({
   return (
     <div className="mx-auto px-4 pb-6 md:px-16">
       <LargeArticleCard post={firstPost} />
+      <div className="mt-12 grid grid-cols-2 gap-x-10 gap-y-10 border-t border-t-neutral-900 py-16">
+        {categoryPosts.map((post) => {
+          return <MediumArticleCard post={post} />
+        })}
+      </div>
     </div>
   )
 }

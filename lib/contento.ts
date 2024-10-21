@@ -79,6 +79,7 @@ export async function getBlogPosts(): Promise<ContentData[]> {
   return await createClient()
     .getContentByType({
       contentType: 'blog_post',
+      limit: 100
     })
     .then((response: ContentAPIResponse) => {
       return response.content

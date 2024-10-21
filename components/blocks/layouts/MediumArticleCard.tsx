@@ -1,5 +1,6 @@
 import { ContentData } from '@gocontento/client'
 import Image from '@/utils/Image'
+import { formatDate } from '@/utils/formatDate'
 
 export default function MediumArticleCard({ post }: { post: ContentData }) {
   return (
@@ -9,8 +10,11 @@ export default function MediumArticleCard({ post }: { post: ContentData }) {
         className="col-span-3 flex-shrink-0"
         imgClassName="object-cover aspect-square"
       />
-      <div className="col-span-4 flex flex-col items-center">
-        <h3 className="mb-3 line-clamp-2 text-pretty text-2xl/[1.2em] font-bold text-neutral-900">
+      <div className="col-span-4 flex flex-col">
+        <span className="mb-3 font-mono text-sm">
+          {formatDate(post.published_at)}
+        </span>
+        <h3 className="mb-3 text-pretty text-2xl/[1.2em] font-bold text-neutral-900">
           {post.fields.title.text}
         </h3>
         <p className="line-clamp-2 text-base text-neutral-900/80">

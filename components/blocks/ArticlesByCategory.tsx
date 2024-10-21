@@ -3,18 +3,18 @@ import SmallArticleCard from './layouts/SmallArticleCard'
 import LargeArticleCard from './layouts/LargeArticleCard'
 
 export default function ArticlesByCategory({
-  posts,
   block,
+  posts,
 }: {
-  posts: ContentData[]
   block: BlockData
+  posts: ContentData[]
 }) {
   // Filters all posts to get only posts for this category
 
   const filteredContent = posts.filter(
     (post) =>
-      post.fields.category.content_links[0].content_link.name ==
-      block.fields.category.content_links[0].content_link.name,
+      post.fields.category.content_links[0].content_link.id ===
+      block.fields.category.content_links[0].content_link.id,
   )
 
   // Takes just the first post to use as large article card at top of section
