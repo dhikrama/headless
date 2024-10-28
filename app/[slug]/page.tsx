@@ -2,8 +2,8 @@ import { draftMode } from 'next/headers'
 import { createClient, generateSeo, getBlogPosts } from '@/lib/contento'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import GeneralPage from '@/components/pages/GeneralPage'
 import { ContentAPIResponse } from '@gocontento/client'
+import InfoPage from '@/components/pages/InfoPage'
 
 const client = createClient()
 
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   return await client
     .getContent({
       params: {
-        content_type: ['general_page'],
+        content_type: ['info_page'],
         limit: '100',
       },
     })
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return await client
     .getContent({
       params: {
-        content_type: ['general_page'],
+        content_type: ['info_page'],
         slug: params.slug,
         limit: '1',
       },
@@ -54,7 +54,7 @@ export default async function page({ params }: Props) {
   const response = await createClient(draftMode().isEnabled)
     .getContent({
       params: {
-        content_type: ['general_page'],
+        content_type: ['info_page'],
         slug: params.slug,
         limit: '1',
       },
@@ -67,5 +67,5 @@ export default async function page({ params }: Props) {
 
   const posts = await getBlogPosts()
 
-  return <GeneralPage initialContent={content} posts={posts} />
+  return <InfoPage initialContent={content} posts={posts} />
 }

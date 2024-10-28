@@ -8,7 +8,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/16/solid'
 import { usePathname } from 'next/navigation'
 import { classNames } from '@/utils/ClassNames'
 import { useState } from 'react'
-import CategoryPill from './blocks/layouts/CategoryPill'
+import CategoryPill from './blocks/CategoryPill'
 import LinkedInIcon from './icons/LinkedInIcon'
 import TwitterIcon from './icons/TwitterIcon'
 import MogalLogoOutline from '@/images/MogalLogoOutline'
@@ -27,7 +27,7 @@ export default function Header({
     <header className="bg-neutral-100">
       <nav
         aria-label="Global"
-        className="mx-auto flex h-20 items-center justify-between px-4 sm:px-6 md:px-16 lg:h-28"
+        className="mx-auto flex h-20 items-center justify-between px-4 md:px-16 lg:h-28"
       >
         <div className="flex gap-x-9 lg:flex-1">
           <Link href="/" className="inline-block w-[120px] hover:opacity-80">

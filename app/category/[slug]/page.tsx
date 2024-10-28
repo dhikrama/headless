@@ -47,7 +47,7 @@ export default async function page({ params }: Props) {
       notFound()
     })
 
-  const getCategoryPosts = await client.getContent({
+  const postsResponse = await client.getContent({
     params: {
       content_type: 'blog_post',
       limit: '100',
@@ -55,7 +55,7 @@ export default async function page({ params }: Props) {
     },
   })
 
-  const posts = getCategoryPosts.content
+  const posts = postsResponse.content
 
   return <CategoryPage initialContent={content} posts={posts} />
 }
