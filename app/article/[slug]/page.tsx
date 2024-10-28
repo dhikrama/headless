@@ -1,5 +1,5 @@
 import { draftMode } from 'next/headers'
-import { createClient, generateSeo, getBlogPosts } from '@/lib/contento'
+import { createClient, generateSeo, getArticles } from '@/lib/contento'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import ArticlePage from '@/components/pages/ArticlePage'
@@ -16,7 +16,7 @@ type Props = {
 export async function generateStaticParams() {
   return await client
     .getContentByType({
-      contentType: 'blog_post',
+      contentType: 'article',
       limit: 100,
     })
     .then((response: ContentAPIResponse) => {
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return await client
-    .getContentBySlug(params.slug, 'blog_post')
+    .getContentBySlug(params.slug, 'article')
     .then((content: ContentData) => {
       return generateSeo(content, {
         type: 'article',
@@ -48,12 +48,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function page({ params }: Props) {
   const post = await createClient(draftMode().isEnabled)
-    .getContentBySlug(params.slug, 'blog_post')
+    .getContentBySlug(params.slug, 'article')
     .catch(() => {
       notFound()
     })
 
-  const posts = await getBlogPosts()
+  const posts = await getArticles()
 
   return <ArticlePage initialContent={post} posts={posts} />
 }

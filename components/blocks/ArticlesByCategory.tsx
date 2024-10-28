@@ -1,6 +1,6 @@
 import { BlockData, ContentData } from '@gocontento/client'
-import SmallArticleCard from './layouts/SmallArticleCard'
-import LargeArticleCard from './layouts/LargeArticleCard'
+import SmallArticleCard from './SmallArticleCard'
+import LargeArticleCard from './LargeArticleCard'
 
 export default function ArticlesByCategory({
   block,
@@ -30,9 +30,9 @@ export default function ArticlesByCategory({
   const smallGrid = categoryPosts.slice(0, 3)
 
   return (
-    <div className="py-8">
+    <div className="pb-0 pt-8 md:py-8">
       <div className="border-t border-t-neutral-900">
-        <p className="inline-block bg-neutral-900 px-3 py-2 text-center font-mono text-xs text-neutral-50">
+        <p className="mb-6 inline-block bg-neutral-900 px-3 py-2 text-center font-mono text-xs text-neutral-50">
           {block.fields.category.content_links[0].content_link.name}
         </p>
         <LargeArticleCard post={firstPost} />
@@ -41,7 +41,7 @@ export default function ArticlesByCategory({
             <SmallArticleCard key={`blog-post-${index}`} post={post} />
           ))}
         </div>
-        <div className="grid-cols-3 divide-y divide-neutral-900 md:mt-9 md:grid md:divide-x md:divide-y-0 xl:hidden">
+        <div className="flex flex-col divide-y divide-neutral-900 md:mt-9 md:grid md:grid-cols-3 md:space-y-0 md:divide-x md:divide-y-0 xl:hidden">
           {smallGrid.map((post: ContentData, index: number) => (
             <SmallArticleCard key={`blog-post-${index}`} post={post} />
           ))}

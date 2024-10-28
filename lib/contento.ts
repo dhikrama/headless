@@ -59,10 +59,10 @@ export function generateSeo(
   }
 }
 
-export async function getBlogCategoryLinks(): Promise<ContentData[]> {
+export async function getArticleCategoryLinks(): Promise<ContentData[]> {
   return await createClient()
     .getContentByType({
-      contentType: 'blog_category',
+      contentType: 'article_category',
       sortBy: 'name',
       sortDirection: 'asc',
       limit: 10,
@@ -75,10 +75,10 @@ export async function getBlogCategoryLinks(): Promise<ContentData[]> {
     })
 }
 
-export async function getBlogPosts(): Promise<ContentData[]> {
+export async function getArticles(): Promise<ContentData[]> {
   return await createClient()
     .getContentByType({
-      contentType: 'blog_post',
+      contentType: 'article',
       limit: 100
     })
     .then((response: ContentAPIResponse) => {

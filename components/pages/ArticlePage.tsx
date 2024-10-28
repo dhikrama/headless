@@ -5,8 +5,8 @@ import { useLivePreview } from '@gocontento/next'
 import { formatDate } from '@/utils/formatDate'
 import Image from '@/utils/Image'
 import Link from 'next/link'
-import LatestPosts from '../blocks/layouts/LatestPosts'
-import CategoryPosts from '../blocks/layouts/CategoryPosts'
+import LatestPosts from '../blocks/LatestPosts'
+import CategoryPosts from '../blocks/CategoryPosts'
 
 export default function ArticlePage({
   initialContent,

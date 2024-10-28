@@ -4,9 +4,9 @@ import Image from '@/utils/Image'
 import { formatDate } from '@/utils/formatDate'
 import LinkedInIcon from '../icons/LinkedInIcon'
 import TwitterIcon from '../icons/TwitterIcon'
-import LatestPosts from './layouts/LatestPosts'
+import LatestPosts from './LatestPosts'
 
-export default function FeaturedPost({
+export default function Hero({
   posts,
   block,
 }: {
@@ -17,10 +17,8 @@ export default function FeaturedPost({
 
   const featuredPost = block.fields.featured_post.content_links[0].content_link
 
-  const featuredPostAuthor =
-    featuredPost.fields.author.content_links[0].content_link
-
   const authors = block.fields.authors.content_links
+  console.log(featuredPost)
 
   // Removes featured post from posts array
 
@@ -33,8 +31,8 @@ export default function FeaturedPost({
   const latestPosts = postsWithoutFeatured.slice(0, 3)
 
   return (
-    <div className="grid-cols-7 gap-x-10 md:grid">
-      <div className="col-span-5 pb-6">
+    <div className="gap-x-10 md:grid lg:grid-cols-7">
+      <div className="pb-12 lg:col-span-5 lg:pb-6">
         <Link href={`/${featuredPost.uri}`}>
           <Image
             asset={featuredPost.fields.image.assets[0].asset}
@@ -63,7 +61,7 @@ export default function FeaturedPost({
           {featuredPost.fields.excerpt.text}
         </p>
       </div>
-      <div className="col-span-2 flex flex-col justify-between">
+      <div className="flex flex-col justify-between md:grid md:grid-cols-2 md:gap-x-10 lg:col-span-2 lg:grid-cols-1">
         <LatestPosts posts={latestPosts} />
         <div className="border-t border-t-neutral-900 pb-6">
           <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">

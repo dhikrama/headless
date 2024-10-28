@@ -16,7 +16,7 @@ type Props = {
 export async function generateStaticParams() {
   return await client
     .getContentByType({
-      contentType: 'blog_category',
+      contentType: 'article_category',
       limit: 100,
     })
     .then((response: ContentAPIResponse) => {
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return await client
-    .getContentBySlug(params.slug, 'blog_category')
+    .getContentBySlug(params.slug, 'article_category')
     .then((content: ContentData) => {
       return generateSeo(content)
     })
@@ -42,20 +42,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function page({ params }: Props) {
   const content = await createClient(draftMode().isEnabled)
-    .getContentBySlug(params.slug, 'blog_category')
+    .getContentBySlug(params.slug, 'article_category')
     .catch(() => {
       notFound()
     })
 
-  const getCategoryPosts = await client.getContent({
+  const postsResponse = await client.getContent({
     params: {
-      content_type: 'blog_post',
+      content_type: 'article',
       limit: '100',
       'fields[content_links][category][slug]': params.slug,
     },
   })
 
-  const posts = getCategoryPosts.content
+  const posts = postsResponse.content
 
   return <CategoryPage initialContent={content} posts={posts} />
 }

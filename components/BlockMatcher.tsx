@@ -4,6 +4,7 @@ import { useId } from 'react'
 import { BlockData, ContentData } from '@gocontento/client'
 import ArticlesByCategory from './blocks/ArticlesByCategory'
 import Hero from './blocks/Hero'
+import ImageAndText from './blocks/ImageAndText'
 
 export default function BlockMatcher({
   posts,
@@ -28,6 +29,9 @@ export default function BlockMatcher({
           />
         )
 
+      case 'image_and_text':
+        return <ImageAndText key={id + '-' + index} block={block} />
+
       default:
         return (
           <div className="py-16">
@@ -41,7 +45,7 @@ export default function BlockMatcher({
               <p>
                 Please check you have added the block to the block matcher and
                 the case matches the{' '}
-                <span className="font-semibold">content_type.handle</span>
+                <span className="font-bold">content_type.handle</span>
               </p>
 
               <pre className="max-h-[40vh]">

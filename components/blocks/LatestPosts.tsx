@@ -26,7 +26,7 @@ export default function LatestPosts({
               </Link>
               <div className="flex flex-col justify-between">
                 <Link href={`/${post.uri}`}>
-                  <h3 className="text-md text-pretty font-bold">
+                  <h3 className="text-md tracking-snug line-clamp-2 text-pretty font-bold leading-tight">
                     {post.fields.title.text}
                   </h3>
                 </Link>

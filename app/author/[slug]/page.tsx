@@ -1,5 +1,9 @@
 import { draftMode } from 'next/headers'
-import { createClient, generateSeo, getBlogCategoryLinks } from '@/lib/contento'
+import {
+  createClient,
+  generateSeo,
+  getArticleCategoryLinks,
+} from '@/lib/contento'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { ContentAPIResponse, ContentData } from '@gocontento/client'
@@ -55,14 +59,14 @@ export default async function page({ params }: Props) {
 
   const postsResponse = await client.getContent({
     params: {
-      content_type: 'blog_post',
+      content_type: 'article',
       limit: '100',
       'fields[content_links][author][slug]': params.slug,
     },
   })
 
   const posts = postsResponse.content
-  const categoryLinks = await getBlogCategoryLinks()
+  const categoryLinks = await getArticleCategoryLinks()
 
   return (
     <AuthorPage
