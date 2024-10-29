@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { createClient, generateSeo, getArticles } from '@/lib/contento'
-=======
-import { createClient, generateSeo, getBlogPosts } from '@/lib/contento'
->>>>>>> 2b08fd0fe2dd2df7aaaeb0e1285ba7fb5aec1d0a
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import GeneralPage from '@/components/pages/GeneralPage'
