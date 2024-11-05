@@ -41,13 +41,13 @@ export default function CategoryPosts({
               <Link className="h-20 w-20 flex-shrink-0" href={`/${post.uri}`}>
                 <Image
                   asset={post.fields.image.assets[0].asset}
+                  apiParams="fit=crop&w=150&h=150&dpr=2&q=80"
                   imgClassName="object-cover aspect-square"
-                  apiParams="fit=crop&w=200h=200&dpr=2"
                 />
               </Link>
               <div className="flex flex-col justify-between">
                 <Link href={`/${post.uri}`}>
-                  <h3 className="text-md text-pretty font-bold">
+                  <h3 className="text-pretty text-base/[1.3em] font-bold tracking-tight sm:text-xl/[1.3em] md:line-clamp-3 md:text-base/[1.3em] 2xl:w-4/5">
                     {post.fields.title.text}
                   </h3>
                 </Link>

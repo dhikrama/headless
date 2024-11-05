@@ -5,11 +5,13 @@ import Link from 'next/link'
 
 export default function MediumArticleCard({ post }: { post: ContentData }) {
   return (
-    <div className="flex flex-col gap-x-5 md:flex-none lg:grid lg:grid-cols-7">
+    <div className="lg:grid lg:grid-cols-7 lg:gap-x-5">
+      {/* // JOSH HELP?? - Lots of space below image */}
       <Link href={`/${post.uri}`} className="col-span-3">
         <Image
           asset={post.fields.image.assets[0].asset}
-          imgClassName="object-cover aspect-square"
+          imgClassName="object-cover aspect-video lg:aspect-square"
+          apiParams="fit=crop&w=400&h=400&dpr=2&q=80"
         />
       </Link>
       <div className="col-span-4 mt-6 flex flex-col lg:mt-0">

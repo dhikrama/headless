@@ -28,12 +28,12 @@ export default function ArticlePage({
 
   return (
     <div className="mx-auto px-4 sm:px-6 md:px-16">
-      <div className="gap-x-16 md:grid md:grid-cols-5 lg:grid-cols-7">
-        <div className="md:col-span-3 lg:col-span-5">
+      <div className="xl:grid xl:grid-cols-7 xl:gap-x-10">
+        <div className="xl:col-span-5">
           <Image
             asset={content.fields.image.assets[0].asset}
             imgClassName="aspect-square md:aspect-[9/4] object-cover mb-7"
-            apiParams="fit=crop&w=1200&dpr=2"
+            apiParams="fit=crop&w=1200&dpr=2&q=80"
           />
           <div className=" flex items-center gap-x-5">
             <span className="font-mono text-sm">
@@ -47,7 +47,7 @@ export default function ArticlePage({
               {content.fields.category.content_links[0].content_link.name}
             </Link>
           </div>
-          <h1 className="mt-6 text-4xl/[1.1em] font-bold tracking-tight text-neutral-900 md:line-clamp-4 lg:text-6xl/[1.1em]">
+          <h1 className="mt-6 text-pretty text-4xl/[1.1em] font-bold tracking-tight text-neutral-900 md:line-clamp-4 md:text-5xl/[1.1em] lg:text-6xl/[1.1em]">
             {content.fields.title.text}
           </h1>
           <Link
@@ -56,7 +56,9 @@ export default function ArticlePage({
           >
             <Image
               asset={author.fields.image.assets[0].asset}
-              className="h-12 w-12 object-cover md:hidden lg:block"
+              className="flex-shrink-0 object-cover md:hidden lg:block"
+              imgClassName="w-12 h-12"
+              apiParams="fit=crop&w=30&h=30&dpr=2&q=80"
             />
             <span className="text-md text-neutral-900">{author.name}</span>
           </Link>
@@ -65,13 +67,17 @@ export default function ArticlePage({
               dangerouslySetInnerHTML={{
                 __html: content.fields.post_body.text,
               }}
-              className="prose"
+              className="prose prose-lg"
             />
           </div>
         </div>
-        <div className="col-span-2">
-          <LatestPosts posts={latestPosts} />
-          <CategoryPosts posts={posts} currentPost={content} />
+        <div className="space-y-6 md:flex md:gap-x-10 md:space-y-0 xl:col-span-2 xl:flex-col">
+          <LatestPosts posts={latestPosts} className="md:flex-1 xl:flex-none" />
+          <CategoryPosts
+            posts={posts}
+            currentPost={content}
+            className="md:flex-1 xl:flex-none"
+          />
         </div>
       </div>
     </div>

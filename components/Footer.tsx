@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function Footer({ footerNav }: { footerNav: ContentData }) {
   return (
-    <div className="mx-auto flex w-full flex-col gap-x-16 gap-y-6 bg-neutral-900 px-6 py-16 md:flex-row md:justify-between md:px-16">
+    <div className="mx-auto mt-9 flex w-full flex-col gap-x-16 gap-y-6 bg-neutral-900 px-6 py-16 md:flex-row md:justify-between md:px-16">
       <div className="flex flex-col justify-center">
         <MogalIcon className="-ml-1 h-10 w-10" />
         <form className="max-w-60 py-4 lg:max-w-none">

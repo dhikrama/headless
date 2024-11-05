@@ -1,16 +1,15 @@
 'use client'
 
 import { useLivePreview } from '@gocontento/next'
-import { ContentData, ContentLinkData } from '@gocontento/client/lib/types'
+import { ContentData } from '@gocontento/client/lib/types'
 import Image from '@/utils/Image'
 import TwitterIcon from '../icons/TwitterIcon'
 import LinkedInIcon from '../icons/LinkedInIcon'
 import MediumArticleCard from '../blocks/MediumArticleCard'
-import LargeArticleCard from '../blocks/LargeArticleCard'
 import { ContentLink } from '@/utils/Types'
 import Link from 'next/link'
 
-export default function BlogAuthor({
+export default function AuthorPage({
   initialContent,
   posts,
   categoryLinks,
@@ -45,7 +44,8 @@ export default function BlogAuthor({
         <div className="lg:col-span-3 xl:col-span-2">
           <Image
             asset={content.fields.image.assets[0].asset}
-            imgClassName="object-cover"
+            imgClassName="object-cover aspect-square sm:max-w-64 lg:max-w-full"
+            apiParams="fit=crop&w=600&h=600&dpr=2&q=80"
           />
           <h1 className="mb-5 mt-7 text-4xl font-bold tracking-tight">
             {content.fields.name.text}
@@ -76,12 +76,13 @@ export default function BlogAuthor({
                       <Image
                         asset={post.content_link.fields.image.assets[0].asset}
                         className="h-64 w-64"
-                        imgClassName="object-cover aspect-square"
+                        imgClassName="object-cover  aspect-square"
+                        apiParams="fit=crop&w=300&dpr=2&q=80"
                       />
                     </Link>
-                    <div className="flex flex-col justify-between">
+                    <div className="flex flex-col justify-between gap-y-2">
                       <Link href={`/${post.content_link.uri}`}>
-                        <h3 className="line-clamp-3 text-pretty text-base font-bold leading-tight sm:w-3/4 md:text-xl lg:w-full lg:text-base">
+                        <h3 className="line-clamp-3 text-pretty text-base font-bold leading-tight lg:w-full">
                           {post.content_link.fields.title.text}
                         </h3>
                       </Link>
@@ -101,7 +102,7 @@ export default function BlogAuthor({
             </div>
           </div>
         </div>
-        <div className="gap-10 space-y-10 border-t border-t-neutral-900 pb-16 pt-10 md:grid md:grid-cols-2 md:space-y-0 lg:col-span-4 lg:grid-cols-1 lg:border-none lg:pt-0 xl:col-span-5 xl:grid-cols-2">
+        <div className="space-y-10 border-t border-t-neutral-900 pb-16 pt-10 md:grid md:grid-cols-2 md:gap-10 md:space-y-0 lg:col-span-4 lg:grid-cols-1 lg:border-none lg:pt-0 xl:col-span-5 xl:grid-cols-2">
           {filteredArticles.map((post) => {
             return <MediumArticleCard post={post} key={`post-${post.id}`} />
           })}

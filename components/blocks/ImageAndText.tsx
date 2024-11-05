@@ -8,7 +8,9 @@ export default function ImageAndText({ block }: { block: BlockData }) {
     <div>
       <Image
         asset={block.fields.image.assets[0].asset}
-        className="h-full w-full object-cover"
+        className="h-full w-full"
+        imgClassName="object-cover"
+        apiParams="fit=crop&w=1200&dpr=2&q=80"
       />
     </div>
   )
@@ -38,7 +40,7 @@ export default function ImageAndText({ block }: { block: BlockData }) {
         )}
         <div
           dangerouslySetInnerHTML={{ __html: block.fields.text.text }}
-          className="prose mb-12 mt-6 text-lg lg:w-3/4"
+          className="prose mb-12 mt-7 text-lg lg:w-3/4"
         />
         {block.fields.button.blocks &&
           block.fields.button.blocks.map((button: BlockData) => {

@@ -40,7 +40,7 @@ export default function Header({
                 key={`article-category-${index}`}
                 className="[&_span]:last-of-type:hidden"
               >
-                <CategoryPill category={category} />
+                <CategoryPill category={category} pathName={pathName} />
                 <span className="px-3 text-neutral-900">/</span>
               </div>
             ))}
@@ -76,7 +76,7 @@ export default function Header({
                   href={item.fields.link_url.text}
                   className={classNames(
                     pathName.startsWith(item.fields.link_url.text)
-                      ? 'underline'
+                      ? 'underline underline-offset-4'
                       : 'text-neutral-900',
                     'text-md ',
                   )}
@@ -127,6 +127,7 @@ export default function Header({
                   <CategoryPill
                     category={category}
                     onClick={() => setMobileMenuOpen(false)}
+                    pathName={pathName}
                   />
                   <span className="px-3 text-neutral-50">/</span>
                 </div>

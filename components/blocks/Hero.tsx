@@ -2,9 +2,8 @@ import { BlockData, ContentData } from '@gocontento/client'
 import Link from 'next/link'
 import Image from '@/utils/Image'
 import { formatDate } from '@/utils/formatDate'
-import LinkedInIcon from '../icons/LinkedInIcon'
-import TwitterIcon from '../icons/TwitterIcon'
 import LatestPosts from './LatestPosts'
+import AuthorCards from './AuthorCards'
 
 export default function Hero({
   posts,
@@ -18,7 +17,6 @@ export default function Hero({
   const featuredPost = block.fields.featured_post.content_links[0].content_link
 
   const authors = block.fields.authors.content_links
-  console.log(featuredPost)
 
   // Removes featured post from posts array
 
@@ -29,15 +27,16 @@ export default function Hero({
   // Gets latest three posts
 
   const latestPosts = postsWithoutFeatured.slice(0, 3)
+  const latestPostsXl = postsWithoutFeatured.slice(0, 4)
 
   return (
-    <div className="gap-x-10 md:grid lg:grid-cols-7">
+    <div className="lg:grid lg:grid-cols-5 lg:gap-x-10 xl:grid-cols-7">
       <div className="pb-12 lg:col-span-5 lg:pb-6">
         <Link href={`/${featuredPost.uri}`}>
           <Image
             asset={featuredPost.fields.image.assets[0].asset}
-            imgClassName="aspect-square md:aspect-[9/4] object-cover mb-7"
-            apiParams="fit=crop&w=1200&dpr=2"
+            imgClassName="aspect-video md:aspect-[9/4] object-cover mb-7"
+            apiParams="fit=crop&w=1200&dpr=2&q=80"
           />
         </Link>
         <div className=" flex items-center gap-x-5">
@@ -61,50 +60,10 @@ export default function Hero({
           {featuredPost.fields.excerpt.text}
         </p>
       </div>
-      <div className="flex flex-col justify-between md:grid md:grid-cols-2 md:gap-x-10 lg:col-span-2 lg:grid-cols-1">
-        <LatestPosts posts={latestPosts} />
-        <div className="border-t border-t-neutral-900 pb-6">
-          <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
-            Popular Authors
-          </h3>
-          <div className="flex flex-col justify-center">
-            {authors.map((author: any) => {
-              return (
-                <div key={`${author.id}`} className="flex gap-x-5 py-5">
-                  <Link
-                    className="h-20 w-20"
-                    href={`/${author.content_link.uri}`}
-                  >
-                    <Image
-                      asset={author.content_link.fields.image.assets[0].asset}
-                      className="object-cover"
-                    />
-                  </Link>
-                  <div className="flex flex-col justify-between">
-                    <div>
-                      <Link href={`/${author.content_link.uri}`}>
-                        <h3 className="text-md font-bold">
-                          {author.content_link.fields.name.text}
-                        </h3>
-                      </Link>
-                      <p className="font-mono text-sm">
-                        {author.content_link.fields.role.text}
-                      </p>
-                    </div>
-                    <div className="flex gap-x-3 text-neutral-900">
-                      <LinkedInIcon
-                        href={author.content_link.fields.linked_in.text}
-                      />
-                      <TwitterIcon
-                        href={author.content_link.fields.twitter.text}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
+      <div className="flex flex-col justify-between md:col-span-5 md:grid md:grid-cols-2 md:gap-x-10 lg:col-span-5 xl:col-span-2 xl:grid-cols-1">
+        <LatestPosts posts={latestPosts} className="xl:hidden" />
+        <LatestPosts posts={latestPostsXl} className="hidden xl:block" />
+        <AuthorCards authors={authors} />
       </div>
     </div>
   )
