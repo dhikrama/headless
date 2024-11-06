@@ -29,7 +29,7 @@ export default function BlogCategory({
         <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
           {content.name}
         </h3>
-        <div className="grid grid-cols-2 gap-x-10 gap-y-10 pb-12 pt-6">
+        <div className="grid gap-x-10 gap-y-10 pt-6 md:grid-cols-2">
           {categoryPosts.map((post: ContentData, index: number) => {
             return <MediumArticleCard post={post} key={`article-${index}`} />
           })}
