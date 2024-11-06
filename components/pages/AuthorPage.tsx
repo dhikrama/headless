@@ -40,7 +40,7 @@ export default function AuthorPage({
 
   return (
     <div className="mx-auto px-4 md:px-16">
-      <div className="gap-x-16 lg:grid lg:grid-cols-7">
+      <div className="gap-x-16 lg:grid lg:grid-cols-7 items-start">
         <div className="lg:col-span-3 xl:col-span-2">
           <Image
             asset={content.fields.image.assets[0].asset}
