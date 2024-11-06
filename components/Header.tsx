@@ -58,34 +58,21 @@ export default function Header({
         </div>
         <div className="hidden items-center lg:flex lg:gap-x-12">
           {mainNav.fields.nav_links.blocks.map((item: BlockData) => {
-            if (item.fields.button.is_on) {
-              return (
-                <Link
-                  key={item.fields.link_text.text}
-                  href={item.fields.link_url.text}
-                  className="my-9 inline-block rounded-md bg-neutral-900 px-9 py-3 text-neutral-50 hover:opacity-80"
-                  target={item.fields.open_in_new_tab.is_on ? '_blank' : ''}
-                >
-                  {item.fields.link_text.text}
-                </Link>
-              )
-            } else {
-              return (
-                <Link
-                  key={item.fields.link_text.text}
-                  href={item.fields.link_url.text}
-                  className={classNames(
-                    pathName.startsWith(item.fields.link_url.text)
-                      ? 'underline underline-offset-4'
-                      : 'text-neutral-900',
-                    'text-md ',
-                  )}
-                  target={item.fields.open_in_new_tab.is_on ? '_blank' : ''}
-                >
-                  {item.fields.link_text.text}
-                </Link>
-              )
-            }
+            return (
+              <Link
+                key={item.fields.link_text.text}
+                href={item.fields.link_url.text}
+                className={classNames(
+                  pathName.startsWith(item.fields.link_url.text)
+                    ? 'underline underline-offset-4'
+                    : 'text-neutral-900',
+                  'text-md ',
+                )}
+                target={item.fields.open_in_new_tab.is_on ? '_blank' : ''}
+              >
+                {item.fields.link_text.text}
+              </Link>
+            )
           })}
         </div>
       </nav>
@@ -135,39 +122,22 @@ export default function Header({
             </div>
             <div className="flex flex-col space-y-5 border-t border-t-neutral-50 py-6">
               {mainNav.fields.nav_links.blocks.map((item: BlockData) => {
-                if (item.fields.button.is_on) {
-                  return (
-                    <div key={item.fields.link_text.text} className="pt-7">
-                      <Link
-                        href={item.fields.link_url.text}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="inline-block rounded-md bg-neutral-900 px-9 py-3 text-center text-neutral-50"
-                        target={
-                          item.fields.open_in_new_tab.is_on ? '_blank' : ''
-                        }
-                      >
-                        {item.fields.link_text.text}
-                      </Link>
-                    </div>
-                  )
-                } else {
-                  return (
-                    <Link
-                      key={item.fields.link_text.text}
-                      href={item.fields.link_url.text}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={classNames(
-                        pathName.startsWith(item.fields.link_url.text)
-                          ? 'underline decoration-1 underline-offset-1'
-                          : 'underline-none',
-                        'text-md text-neutral-50',
-                      )}
-                      target={item.fields.open_in_new_tab.is_on ? '_blank' : ''}
-                    >
-                      {item.fields.link_text.text}
-                    </Link>
-                  )
-                }
+                return (
+                  <Link
+                    key={item.fields.link_text.text}
+                    href={item.fields.link_url.text}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={classNames(
+                      pathName.startsWith(item.fields.link_url.text)
+                        ? 'underline decoration-1 underline-offset-1'
+                        : 'underline-none',
+                      'text-md text-neutral-50',
+                    )}
+                    target={item.fields.open_in_new_tab.is_on ? '_blank' : ''}
+                  >
+                    {item.fields.link_text.text}
+                  </Link>
+                )
               })}
             </div>
           </div>

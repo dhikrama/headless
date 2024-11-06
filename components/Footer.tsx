@@ -45,12 +45,13 @@ export default function Footer({ footerNav }: { footerNav: ContentData }) {
             {footerNav.fields.popular_categories.content_links.map(
               (category: ContentLink) => {
                 return (
-                  <span
+                  <Link
+                    href={`/${category.content_link.uri}`}
                     key={`footer-category-${category.content_link.id}`}
                     className="border border-neutral-50/80 px-3 py-1 text-xs text-neutral-50 hover:bg-neutral-50 hover:text-neutral-900"
                   >
                     {category.content_link.name}
-                  </span>
+                  </Link>
                 )
               },
             )}

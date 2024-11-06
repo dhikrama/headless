@@ -31,9 +31,12 @@ export default function CategoryPosts({
 
   return (
     <div className={`border-t border-t-neutral-900 pb-6 ${className}`}>
-      <h3 className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50">
+      <Link
+        href={`/${currentPost.fields.category.content_links[0].content_link.uri}`}
+        className="inline-block bg-neutral-900 px-3 py-2 font-mono text-xs text-neutral-50"
+      >
         {currentPost.fields.category.content_links[0].content_link.name}
-      </h3>
+      </Link>
       <div className="flex flex-col justify-between">
         {latestPosts.map((post) => {
           return (
