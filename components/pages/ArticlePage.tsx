@@ -32,7 +32,7 @@ export default function ArticlePage({
         <div className="xl:col-span-5">
           <Image
             asset={content.fields.image.assets[0].asset}
-            imgClassName="aspect-square md:aspect-[9/4] object-cover mb-7"
+            imgClassName="aspect-video md:aspect-[9/4] object-cover mb-7"
             apiParams="fit=crop&w=1200&dpr=2&q=80"
           />
           <div className=" flex items-center gap-x-5">
