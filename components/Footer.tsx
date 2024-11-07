@@ -1,9 +1,8 @@
 import MogalIcon from '@/images/MogalIcon'
 import { ContentLink } from '@/utils/Types'
 import { BlockData, ContentData } from '@gocontento/client'
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
-
 import Link from 'next/link'
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
 export default function Footer({ footerNav }: { footerNav: ContentData }) {
   return (
@@ -24,7 +23,7 @@ export default function Footer({ footerNav }: { footerNav: ContentData }) {
               className="flex-shrink-0 border border-neutral-50/80 bg-neutral-900 px-2 py-2 text-sm text-neutral-50 md:py-1"
             />
             <div className="mt-2 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-neutral-50/80 p-2 text-neutral-50/80 hover:bg-neutral-50/80 hover:text-neutral-900 md:mt-0">
-              <ArrowRightIcon />
+              <ArrowRightIcon className="h-6 w-6" />
             </div>
           </div>
           <p className="mt-6 text-xs text-neutral-50/80 md:mt-4 lg:w-3/4">
