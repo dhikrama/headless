@@ -1,6 +1,7 @@
 import { BlockData, ContentData } from '@gocontento/client'
 import SmallArticleCard from './SmallArticleCard'
 import LargeArticleCard from './LargeArticleCard'
+import Link from 'next/link'
 
 export default function ArticlesByCategory({
   block,
@@ -32,9 +33,12 @@ export default function ArticlesByCategory({
   return (
     <div className="md:py-8">
       <div className="border-t border-t-neutral-900">
-        <p className="mb-6 inline-block bg-neutral-900 px-3 py-2 text-center font-mono text-xs text-neutral-50">
+        <Link
+          href={`/${block.fields.category.content_links[0].content_link.uri}`}
+          className="mb-6 inline-block bg-neutral-900 px-3 py-2 text-center font-mono text-xs text-neutral-50"
+        >
           {block.fields.category.content_links[0].content_link.name}
-        </p>
+        </Link>
         <LargeArticleCard post={firstPost} />
         <div className="mt-9 hidden grid-cols-5 divide-neutral-900 xl:grid xl:divide-x">
           {largeGrid.map((post: ContentData, index: number) => (
