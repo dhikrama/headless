@@ -19,7 +19,7 @@ export default function CategoryPill({
         href={`/${category.uri}`}
         onClick={onClick}
         className={classNames(
-          'hover:bold not-prose p-2 font-mono text-sm text-neutral-50 first:pl-0 md:text-neutral-900',
+          'hover:bold not-prose p-2 font-mono text-sm text-neutral-50 first:pl-0 lg:text-neutral-900',
           pathName.endsWith(category.slug)
             ? 'font-bold md:font-normal md:underline md:underline-offset-4'
             : '',

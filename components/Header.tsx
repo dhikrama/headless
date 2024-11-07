@@ -34,7 +34,7 @@ export default function Header({
             <span className="sr-only">Mogal</span>
             <MogalLogo className="h-auto w-full" />
           </Link>
-          <div className="hidden flex-wrap items-center gap-x-3 gap-y-4 md:flex">
+          <div className="hidden flex-wrap items-center gap-x-3 gap-y-4 lg:flex">
             {categoryLinks.map((category, index) => (
               <div
                 key={`article-category-${index}`}
@@ -56,7 +56,7 @@ export default function Header({
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden items-center lg:flex lg:gap-x-12">
+        <div className="hidden items-center lg:flex lg:gap-x-10">
           {mainNav.fields.nav_links.blocks.map((item: BlockData) => {
             return (
               <Link
@@ -129,7 +129,7 @@ export default function Header({
                     onClick={() => setMobileMenuOpen(false)}
                     className={classNames(
                       pathName.startsWith(item.fields.link_url.text)
-                        ? 'underline decoration-1 underline-offset-1'
+                        ? 'underline underline-offset-4'
                         : 'underline-none',
                       'text-md text-neutral-50',
                     )}
