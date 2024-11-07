@@ -6,7 +6,7 @@ tech stack ([Next.js](https://nextjs.org) & [Tailwind CSS](https://tailwindcss.c
 
 👉 [View Demo](https://mogul-contento-starter.vercel.app/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☯️ [Contento Library Site](https://app.contento.io/library/site-starters?kit=s_01jA840Sd8JFbGaw9HX5sabGDb)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎓 [User Guide](https://www.contento.io/docs/guides/starter-kits/mogal)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎓 [User Guide](https://www.contento.io/docs/guides/starter-kits/mogul)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📄 [Contento Docs](https://www.contento.io/docs)
 
 ## Getting Started
