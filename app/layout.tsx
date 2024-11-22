@@ -3,6 +3,7 @@ import { createClient, getArticleCategoryLinks } from '@/lib/contento'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { DM_Sans, JetBrains_Mono } from 'next/font/google'
+import AnnouncementBar from '@/components/blocks/AnnouncementBar'
 
 const DMSansFont = DM_Sans({
   variable: '--font-dm-sans',
@@ -56,6 +57,10 @@ export default async function RootLayout({
 
   const categoryLinks = await getArticleCategoryLinks()
 
+  const announcementBar = await createClient().getContentByType({
+    contentType: 'announcement_bar',
+  })
+
   return (
     <html
       lang="en"
@@ -64,6 +69,9 @@ export default async function RootLayout({
     >
       <body className="flex h-full bg-neutral-100">
         <div className="flex w-full flex-col">
+          {announcementBar && (
+            <AnnouncementBar block={announcementBar.content[0]} />
+          )}
           <Header mainNav={mainNav} categoryLinks={categoryLinks} />
           <main className="flex-auto">{children}</main>
           <Footer footerNav={footerNav} />
