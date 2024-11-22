@@ -1,4 +1,4 @@
-## Welcome to the Mogul Starter Kit for Contento
+## Contento Mogul Starter Kit
 
 This is a fully styled website starter kit designed for article based content. It has a page builder template, header and footer navs, and a collection of composable content blocks for displaying article content, categories and authors.
 It’s designed to get you started using Contento, and is built with a familiar and popular
